@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LightersMania - Area Vendite</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Riccardo Balia">
+        <meta name="keywords" content="Lighters,Accendini,LightersMania,Vendita">
+    </head>
+    <body>
+        <h1>Area Vendite</h1>
+        Inserisci le specifiche del prodotto che desideri vendere, ti contatteremo per confermare la tua richiesta.
+        <hr/>
+        <form action="venditore.html" method="post">
+            <p><label for="name">Nome del prodotto:</label><br/>
+                <input type="text" name="formVendita" id="name"/></p>
+            <p><label for="urlImmagine">URL di una foto del prodotto:</label><br/>
+                <input type="url" name="formVendita" id="urlImmagine"/></p>
+            <p><label for="prezzo">Prezzo di vendita:</label><br/>
+                <input type="number" name="formVendita" id="prezzo" value="0.00"/>$</p>
+            <p><label for="quantita">Disponibilit&Aacute;:</label><br/>
+                <input type="number" name="formVendita" id="quantita"/></p>
+            <p><label for="descrizione">Descrizione del prodotto:</label><br/>
+                <textarea rows="3" cols="20" name="formVendita" id="descrizione"></textarea></p>
+        </form>
+        <hr/>
+        <nav>
+        <h3>Torna a:</h3>
+        <ul>
+            <li><a href="descrizione.html">Pagina principale</a></li>
+            <li><a href="login.html">Area di Accesso</a></li>
+        </ul>
+        </nav>
+    </body>
+</html>
