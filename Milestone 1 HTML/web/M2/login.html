@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LightersMania - Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Riccardo Balia">
+        <meta name="keywords" content="login,LightersMania">
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+    </head>
+    <body>
+    <div id="page" class="formPage">
+        <header id="pages">
+        <h1 id="title">Login</h1>
+                    
+        <nav id="navigation-top">
+                    <ul>
+                        <li><a href="descrizione.html">Home</a></li>
+                        <li><a href="cliente.html">Compra</a></li>
+                        <li><a href="venditore.html">Vendi</a></li>
+                    </ul>
+        </nav>
+        </header>      
+        
+        <nav id="sidebarLeft"  class="sidebar">
+        <h3>Navigazione</h3>
+        <ul>
+            <li><a href="descrizione.html">Pagina principale</a></li>
+            <li><a href="cliente.html">Area Clienti</a></li>
+            <li><a href="venditore.html">Area Venditori</a></li>
+        </ul>
+        </nav>
+        
+        <div id="content" class="form">
+        <h3>Accedi</h3>
+        <form action="cliente.html" method="post">
+            <div class="labelUsername"><label for="username">Username</label></div>
+            <div class="inputUsername"><input type="text" name="loginform" id="username"/><br/></div>
+            <div class="clearer"></div>
+            <div class="labelPassword"><label for="password">Password</label></div>
+            <div class="inputPassword"><input type="password" name="loginform" id="password"/><br/></div>
+            <div class="clearer"></div>
+            <div class="buttonLogin">
+                <input type="submit" value="Login" class="button"/>
+            </div>
+        </form>
+        </div>    
+        <footer></footer>
+    </div>
+    </body>
+</html>

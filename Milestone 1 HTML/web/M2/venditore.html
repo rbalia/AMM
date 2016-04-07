@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LightersMania - Area Vendite</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Riccardo Balia">
+        <meta name="keywords" content="Lighters,Accendini,LightersMania,Vendita">
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+    </head>
+    <body>
+    <div id="page" class="formPage">
+        <header id="pages">
+        <h1 id="title">Area Vendite</h1>
+            <nav id="navigation-top">
+                <ul>
+                    <li><a href="descrizione.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        
+        </header>        
+        
+        <nav id="sidebarLeft"  class="sidebar">
+        <h3>Navigazione</h3>
+        <ul>
+            <li><a href="descrizione.html">Pagina principale</a></li>
+            <li><a href="login.html">Area di Accesso</a></li>
+        </ul>
+        </nav>
+        
+        <div id="content" class="form">
+        <h3>Vendi</h3>
+        Inserisci le specifiche del prodotto che desideri vendere, ti contatteremo per confermare la tua richiesta.
+        <form action="venditore.html" method="post">
+            <div class="labelNome"><label for="name">Nome:</label></div>
+            <div class="inputNome"><input type="text" name="formVendita" id="name"/></div>
+            <div class="clearer"></div>
+            
+            <div class="labelUrl"><label for="urlImmagine">URL foto:</label></div>
+            <div class="inputUrl"><input type="url" name="formVendita" id="urlImmagine"/></div>
+            <div class="clearer"></div>
+            
+            <div class="labelPrezzo"><label for="prezzo">Prezzo:</label></div>
+            <div class="inputPrezzo"><input type="number" name="formVendita" id="prezzo" value="0.00"/></div>
+            <div class="clearer"></div>
+            
+            <div class="labelDisponibilita"><label for="quantita">Disponibilit&aacute;:</label></div>
+            <div class="inputDisponibilita"><input type="number" name="formVendita" id="quantita"/></div>
+            <div class="clearer"></div>
+            
+            <div class="labelDescrizione"><label for="descrizione">Descrizione:</label></div>
+            <div class="inputDescrizione"><textarea rows="3" cols="16" name="formVendita" id="descrizione"></textarea></div>
+            <div class="clearer"></div>
+            
+            <div class="buttonVendita">
+                <input type="reset" value="Cancella tutto" class="button" />
+                <input type="submit" value="Crea inserzione" class="button" />
+            </div>
+            
+        </form>
+        </div>      
+
+        <footer></footer>
+    </div>
+    </body>
+</html>
