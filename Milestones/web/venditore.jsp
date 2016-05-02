@@ -48,7 +48,8 @@
         <div id="content" class="form">
 
         <h3>Vendi</h3>
-        <c:choose>   
+        <c:choose> 
+        <%--Se l'utente è loggato come venditore--%>
         <c:when test="${(loggedIn eq true) && loggedAsSeller eq true}">
             Inserisci le specifiche del prodotto che desideri vendere, ti contatteremo per confermare la tua richiesta.
         
@@ -79,6 +80,7 @@
                 </table>
                 </div>
             </c:when>
+            <%--Se l'utente non è loggato--%>
             <c:otherwise>     
                 <form action="venditore.html" method="post">
                     <div class="labelNome"><label for="name">Nome:</label></div>

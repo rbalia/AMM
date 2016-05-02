@@ -64,17 +64,7 @@ public class Cliente extends HttpServlet {
                 request.setAttribute("BuyConfirmFlag", false);
                 request.getAttribute("Goods");
             }
-            
-            
-            
-            //request.getAttribute("ObjectID");
-            /*if(idObject!=null && Customer.accountBalance > Objects.price)
-            {
-            }
-            else{
-                if }*/
-            
-            }
+        }
       
       request.getRequestDispatcher("cliente.jsp").forward(request, response);
     }

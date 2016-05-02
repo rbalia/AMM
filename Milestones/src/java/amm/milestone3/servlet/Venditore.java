@@ -36,14 +36,7 @@ public class Venditore extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-            //double total = 44;
-            //String total2 = String.valueOf(total);
-        
         HttpSession session = request.getSession(false);
-        
-        /*User current = new SellerUser();
-        current = (SellerUser) request.getAttribute("Venditore");
-        if(request.getAttribute("Venditore") instanceof SellerUser){}*/
         
         if(session==null || session.getAttribute("loggedIn") == null || session.getAttribute("loggedIn").equals(false) || session.getAttribute("loggedAsSeller") == null ||  !session.getAttribute("loggedAsSeller").equals(true))
         {
