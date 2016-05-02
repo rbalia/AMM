@@ -1,0 +1,598 @@
+/* 
+    Created on : 26-mar-2016, 15.16.57
+    Author     : Riccardo Balia 65106
+*/
+
+/* Caratteristiche generali di elementi presenti nel body */
+@media only screen and (min-width:768px){ 
+    body    {   background-image: url("./Immagini/Sfondo.png");
+                background-repeat: repeat-x;
+                background-color: #e8e8e8;
+                margin-left: 3%;
+                margin-right: 3%;
+                margin-top: 5%;
+                margin-bottom: 5%;
+
+                font-family: Open Sans, arial, sans-serif;
+                position:static;
+                
+                max-width: 2500px;
+    }
+}
+@media only screen  and (min-width:480px) 
+                    and (max-width: 768px){ 
+    body    {
+                font-family: Open Sans, arial, sans-serif;
+                font-size: 0.8em;
+                margin:0px;
+                padding:0px;}
+}
+@media only screen and (max-width:480px){ 
+    body    {
+                font-family: Open Sans, arial, sans-serif;
+                font-size: 0.6em;
+                margin:0px;
+                padding:0px;}
+}
+h1 {
+            font-size: 2em; 
+            color: #990000}
+h2 {
+            font-size: 1.6em; 
+             color: #660000}
+h3 {
+            font-size: 1.4em; 
+            color: #330000}
+h4 {
+            font-size: 1.2em; 
+            color: #330000}
+h5 {
+            font-size: 1em; 
+            color: #110000}
+h6 {
+            font-size: 0.8em; 
+            color: #000000}
+
+/* Stile della pagina */
+
+@media only screen and (min-width:768px){ 
+        div#page {
+                box-shadow: 10px 10px 5px #221100;
+                position:relative;
+        }  
+}
+ div#page {
+            background-color: #eeeeee; 
+            position:relative
+ }
+
+/* Stile della pagina login e venditore */  
+ div#page.formPage{
+            min-width: 200px;
+ }
+            
+
+/* Header standard per ogni pagina */
+@media only screen and (min-width: 480px){    
+    div#page header{
+               background-color: #ff9933;
+               background-image: url(./Immagini/Fiamma2.gif);
+               background-repeat: no-repeat;
+               background-position: center left;
+               border-bottom-width: 10px;
+               border-bottom-style: solid;
+               border-bottom-color: #ff5533;
+               border-top-width: 3px;
+               border-top-style: solid;
+               border-top-color: #ff5533;
+
+    }
+}
+@media only screen and (min-width: 768px){    
+    div#page header{
+               margin-bottom: 50px;
+               margin-top: 20px;
+    }
+}
+
+div#page header{
+               background-color: #ff9933;
+               border-bottom-width: 10px;
+               border-bottom-style: solid;
+               border-bottom-color: #ff5533;
+               border-top-width: 3px;
+               border-top-style: solid;
+               border-top-color: #ff5533;
+
+               margin-bottom: 50px;
+    }
+/* Caratteristiche aggiuntive: Header per le pagine diverse dall'home page */
+@media only screen and (min-width: 480px){   
+    div#page header#pages {       
+                color: black;
+                padding-left: 150px;
+                line-height:  120px;
+                font-weight: bold; 
+    }   
+}
+@media only screen and (max-width: 480px){ 
+    div#page header#pages {       
+                color: black;
+                text-align: center;
+                line-height:  50px;
+                font-weight: bold;
+    }
+}
+/* Caratteristiche aggiuntive: Header per l'home page */
+@media only screen and (min-width: 480px){    
+    div#page header#home {  
+                color: black;
+                padding-left: 150px; /* Evito sovraposizione con l'immagine */
+                font-size: 16px;
+                font-weight: bold; 
+    }
+}
+@media only screen and (min-width: 480px){ 
+    div#page header#home p{
+                padding-right: 15%;
+    }
+}
+div#page header#home p, div#page header#home h1{
+            padding-right: 5%;
+            padding-left:5%;
+}
+/* Footer per ogni pagina */
+div#page footer{  
+            position: relative;
+            border-top-width: 10px;
+            border-top-style: solid;
+            border-top-color: #ff5533;
+            border-bottom-width: 3px;
+            border-bottom-style: solid;
+            border-bottom-color: #ff5533;
+            height: 50px;
+            margin-top: 30px;
+            background-color: #ff9933;
+            
+            clear: both;
+           
+}
+
+/* PROPRIETA' LINK: SIDEBAR */
+nav.sidebar a:link{ 
+            color:  #660000;
+            font-size: 1em;
+            font-weight: normal;
+            text-decoration: none;
+}          
+nav.sidebar a:visited{  
+            color: #330000;
+            font-size: 0.9em;
+            font-weight: normal;
+            text-decoration: none;
+}
+nav.sidebar a:hover{    
+            color: #660000;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: underline;
+}
+nav.sidebar a:active{   
+            color: #990000;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-decoration: underline;}
+
+
+/* PROPRIETA' LINK: TOP-MENU e link della tabella*/
+nav#navigation-top a:link, table a:link{ 
+            color:  #660000;
+            font-size: 1em;
+            font-weight: normal;
+            text-decoration: none;
+}          
+nav#navigation-top a:visited, table a:visited{  
+            color: #330000;
+            font-size: 0.9em;
+            font-weight: normal;
+            text-decoration: none;
+}
+nav#navigation-top a:hover{    
+            color: #660000;
+            font-size: 1em;
+            font-weight: bold;
+            text-decoration: underline;
+}
+nav#navigation-top a:active{   
+            color: #990000;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: underline;}
+
+
+table a:hover{    
+            color: #660000;
+            font-size: 1em;
+            font-weight: normal;
+            text-decoration: underline;
+}
+table a:active{   
+            color: #990000;
+            font-size: 1em;
+            font-weight: normal;
+            text-decoration: underline;}
+
+/* CARATTERISTICHE MENU */
+/* Navigazione: sidebar right (M3) */
+@media only screen and (min-width: 1024px){
+    #sidebarRight{
+            float: right;
+            position: absolute;
+            padding-top: 5px;
+            padding-right: 0px;
+            padding-left: 85%;
+        }  
+}
+@media only screen and (max-width: 1024px){
+    #sidebarRight{
+            display: none;
+        }
+}
+/* Navigazione: sidebar left */
+@media only screen and (min-width: 768px){
+    nav#sidebarLeft { 
+                position:absolute;
+                float: left;
+
+                padding-top: 5px;
+                padding-right:20px;
+                padding-left:0px;
+    }        
+}
+@media only screen and (max-width: 768px){
+    nav#sidebarLeft { 
+                display:none;
+    }
+}
+nav#sidebarLeft h2, nav#sidebarLeft h3{
+            padding-left:40px;}
+nav#sidebarLeft li{
+            list-style-type: none;
+            padding-left: 0px;
+            padding-right: 0px;}
+
+
+/* Navigazione: menù dell'header */
+nav#navigation-top li {
+            list-style-type: none;
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            display: inline-block; 
+           
+            
+}
+@media only screen and (min-width: 480px){
+    nav#navigation-top {
+                background-color:#ff5533;
+                float: right;
+                padding-right: 40px;
+                margin-right:5%;
+                line-height:  15px;
+                text-align: center;
+    }
+            
+}
+@media only screen and (max-width: 480px){
+    nav#navigation-top {
+
+                background-color:#ff5533;
+                float:left;
+                padding-right: 40px;
+                margin-right:5%;
+                margin-left:5%;
+                text-align: center;
+                line-height:  15px;
+        }
+}
+/* Contenuti centrali delle pagine */
+@media only screen and (min-width: 768px){
+    div#content {            
+                position:relative;
+
+                padding-top: 5px;
+                padding-bottom: 5px;
+                margin-right:250px;
+                margin-left:250px;    
+                min-height: 200px;
+    }
+    /*Per le pagine Login e Venditore lascio la pagina centrata*/
+    div#content.form {
+                margin-left:200px; 
+                margin-right:250px;} 
+}
+@media only screen and (max-width: 768px){
+    div#content {            
+                padding-top: 5px;
+                padding-bottom: 5px;
+                margin-right:5%;
+                margin-left: 5%;          
+                min-height: 200px;
+    }
+}
+
+/* Stile dei form */
+@media only screen and (min-width: 480px){
+    div#content form, div#content .confermForm{
+            border-style: solid;
+            border-width: 1px;
+            border-color:#ff5533;
+            background-color: white;
+            min-height:100px;
+            
+            padding-right: 35%;
+            
+            padding-top:5%;
+            padding-bottom:5%;
+    }
+}
+@media only screen and (min-width: 480px){
+    div#content form{
+         padding-right: 35%;
+    }}
+@media only screen and (max-width: 480px){
+    div#content form, div#content .confermForm{
+            border-style: solid;
+            border-width: 1px;
+            border-color:#ff5533;
+            background-color: white;
+            min-height:100px;
+            
+            padding-top:5%;
+            padding-bottom:5%;
+    }
+    div#content .confermForm{
+            padding-left: 0%;
+    }
+    div#content form{
+            padding-left: 30%;
+    }
+    label::after, label::before{
+            content: '\A';
+            white-space: pre;
+    }
+}
+
+form textarea {  
+            position:absolute;
+            border-color: #ff5533;
+            border-style: solid;
+            border-width: 1px;
+            float:right;
+            text-align: left;
+}
+form input {
+            border-color: #ff5533;
+            border-style: solid;
+            border-width: 1px;
+    
+}
+@media only screen and (min-width: 480px){
+    /* Stile delle LABEL in LOGIN */
+    form div.labelUsername{
+                float:left; 
+                text-align:right; 
+                width:75%;
+   }
+    form div.labelPassword{
+                float:left;
+                text-align:right;
+                width:75%;
+    }
+    
+    /* Stile degli INPUT in LOGIN */
+    form div.inputUsername{
+                float:right; 
+                width:25%;
+    }
+    form div.inputPassword{
+                float:right; 
+                width:25%;}
+
+    /* Stile delle LABEL in VENDITORE */
+    form div.labelNome{
+                float:left; 
+                text-align:right;
+                width:75%;}
+    form div.labelUrl{
+                float:left; 
+                text-align:right; 
+                width:75%;}
+    form div.labelPrezzo{
+                float:left; 
+                text-align:right; 
+                width:75%;}
+    form div.labelDisponibilita{
+                float:left;
+                text-align:right;
+                width:75%;}
+    form div.labelDescrizione{
+                float:left;
+                text-align:right;
+                width:75%;
+                margin-bottom:50px;}
+    
+    /* Stile degli INPUT in VENDITORE */
+    form div.inputNome{
+                float:right;
+                width:25%;}
+    form div.inputUrl{
+                float:right;
+                width:25%;}
+    form div.inputPrezzo{
+                float:right; 
+                width:25%;}
+    form div.inputDisponibilita{
+                float:right; 
+                width:25%;}
+    form div.inputDescrizione{}
+    
+    .clearer{
+                clear:both;
+                height:10px;}
+    form label {
+                display:block;
+                /*text-align: left;
+                padding-left:70%;*/}
+}
+            
+
+            
+
+/* Stile dei bottoni*/
+div.buttonLogin,div.buttonVendita{
+            text-align: center;
+            margin-left: 50%;
+}
+@media only screen and (max-width: 480px){
+    div.buttonLogin, div.buttonVendita{
+                text-align: left;
+                margin-left:0%;
+                margin-top: 40px;
+    }
+}
+.button {
+            font-weight: bold;
+            background-color: #ff9933;
+            padding:10px;
+            
+            border:none;
+}
+.button:hover{
+            background-color: #ff5533;
+}
+.button:active{
+            background-color: #ff4433;
+ 
+}
+
+/* Stile delle tabelle */
+div#content table {
+            background-color: white;
+            border-color: #ff5533;
+            border-style: solid;
+            border-width: 1px;
+            
+            border-collapse: collapse; 
+
+            display: inline-block;
+            padding: 10px;
+    
+}
+div#content table tr.pari{
+            background-color: rgba(255,169,9,0.3);}
+div#content table tr.dispari{
+            background-color: rgba(255,81,9,0.3);}
+
+div#content table th{            
+            padding-top:6px;
+            padding-bottom:6px;}   
+
+div#content table th.nome{
+            font-size: 1.4em;
+            text-align: center;
+            color: #550000;
+}
+div#content table th{
+            font-size:1.1em;
+            font-weight: bold;
+            text-align:left;
+            padding-left: 20px;
+            color: #330000;
+}
+div#content table td{
+            font-size:1.1em;
+            padding-left: 10px;
+            padding-right:15px;
+}
+
+/* Stile dei messaggi d'errore e di conferma (Milestone3)*/
+.errors {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50%;
+    font-weight: bold;
+}
+@media only screen and (max-width: 480px){
+    .errorLogin {
+        color: red;
+        text-align: left;
+        margin-left:0%;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+}
+@media only screen and (max-width: 480px){
+    .errorVenditore {
+        color: red;
+        text-align: center;
+        margin-left:0%;
+        margin-top: 10px;
+        font-weight: bold;
+        
+        padding-top:60px;
+    }
+}
+
+.correct {
+    color: green;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50%;
+    font-weight: bold;
+}
+@media only screen and (max-width: 480px){
+    .correct {
+        color: green;
+        text-align: left;
+        margin-left:0%;
+        margin-top: 10px;
+        font-weight: bold;
+        padding-left: 10px;
+    }
+}
+/*Tabella di corretto inserimento dei dati su Venditore e Cliente*/
+@media only screen and (min-width: 1024px){
+    .confermTable {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left:50%;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+    .confermTable {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 20%;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 768px){
+    .confermTable {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 40%;
+    }
+}
+@media only screen and (max-width: 480px){
+    .confermTable {
+        padding-left: 0%;
+        margin-left:0%;
+        margin-top: 10px;
+    }
+}
+p.center{
+    text-align: center;
+}

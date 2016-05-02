@@ -1,0 +1,72 @@
+<%-- 
+    Document   : descrizione
+    Created on : 19-apr-2016, 19.51.47
+    Author     : Riccardo Balia 65106
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LightersMania</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Riccardo Balia">
+        <meta name="keywords" content="Lighters,Accendini,LightersMania">
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+    </head>
+    <body>
+    <div id="page">
+        <header id="home">
+        <h1 id="title">LightersMania</h1>
+            <p>Benvenuto su LightersMania, il sito dedicato alla vendita di accendini a gas, accendini a benzina, 
+            strumenti per l'outdoor e accessori di ricarica. Ma cosa ci rende tra i migliori nel settore? 
+            Inanzitutto la nostra serietà, da anni offriamo i nostri prodotti ad appassionati e escursionisti 
+            che non vogliono mai farsi mancare il fuoco a portata di tasca, e i nostri prezzi sono onesti! 
+            Inizia subito a cercare l'accendino più adatto a te nei nostri cataloghi o vendi il tuo accendino usato!</p>   
+            <nav id="navigation-top">
+                        <ul>
+                        <li><a href="#regolamento">Regolamento</a></li>
+                        <li><a href="#vendite">Vendita</a></li>
+                        <li><a href="#acquisti">Acquisto</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        </ul>
+            </nav>
+        </header>
+        <nav id="sidebarLeft"  class="sidebar">
+        <h2>Navigazione</h2>
+        <ul>
+            <li><a href="login.html">Area di Accesso</a></li>
+            <li><a href="#regolamento">Regolamento</a></li>
+            <li><a href="#vendite">Vendita</a></li>
+            <li><a href="#acquisti">Acquisto</a></li>
+        </ul>
+        </nav>
+
+        <div id="content">
+        <h2><a id="regolamento">Regolamento</a></h2>
+        <p>
+            Qui sotto sono riportate alcune regole per il corretto utilizzo dei servizi offerti da LightersMania.
+            Affinchè ogni proceduta vada a lieto fine, consulta la sezione di vendita e acquisto per saperne di più!.     
+        </p>
+        
+        <h3><a id="vendite">Vendite</a></h3>
+        <p>
+            Le nostre regole per la vendita di oggetti usati o da parte di rivenditori, prevede che ogni prodotto 
+            sia in buone condizioni o con segni di usura che non ne compromettano il funzionamento del prodotto.
+            Inoltre si richiede che i prodotti siano originali per poter offrire al cliente una scelta di marchi
+            noti e affidabili. Se si conclude l'acquisto del prodotto, provvederemo noi alla spedizione entro i
+            4 o 5 giorni lavorativi nel territorio nazionale, rimborsi e restituzioni sono accettati.
+        </p>
+        <h3><a id="acquisti">Acquisti</a></h3>
+        <p>
+            Visitando la pagina dedicata ai clienti e possibile acquistare accendini a benzina e butano, antivento,
+            accendini a candela per la casa, ricariche di combustibile, pietrine e stoppini. Inoltre abbiamo 
+            accessori per escursionisti e gli amanti della natura che cercano prodotti ecologici senza rinunciare
+            al fuoco portabile! Tutti i prodotti sono controllati e certificati, non vi resta che fare un buon acquisto!
+        </p>
+        </div>
+        <footer></footer>
+    </div>  
+    </body>
+</html>
