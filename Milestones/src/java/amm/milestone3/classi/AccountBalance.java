@@ -5,7 +5,8 @@ package amm.milestone3.classi;
  * @author Riccardo Balia 65106
  */
 public class AccountBalance {
-    
+   
+    public Integer ID;
     public Double balance;
     
     public AccountBalance()

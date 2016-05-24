@@ -185,25 +185,25 @@ nav.sidebar a:active{
 
 
 /* PROPRIETA' LINK: TOP-MENU e link della tabella*/
-nav#navigation-top a:link, table a:link{ 
+nav#navigation-top a:link, table a:link, a:link{ 
             color:  #660000;
             font-size: 1em;
             font-weight: normal;
             text-decoration: none;
 }          
-nav#navigation-top a:visited, table a:visited{  
+nav#navigation-top a:visited, table a:visited , a:visited{  
             color: #330000;
             font-size: 0.9em;
             font-weight: normal;
             text-decoration: none;
 }
-nav#navigation-top a:hover{    
+nav#navigation-top a:hover, a:hover {    
             color: #660000;
             font-size: 1em;
             font-weight: bold;
             text-decoration: underline;
 }
-nav#navigation-top a:active{   
+nav#navigation-top a:active , a:active{   
             color: #990000;
             font-size: 1.1em;
             font-weight: bold;
@@ -322,6 +322,32 @@ nav#navigation-top li {
 }
 
 /* Stile dei form */
+
+div#content form.invisibleForm{
+    
+            border-style: none;
+            border-width: 0px;
+            border-color:white;
+            background-color: white;
+            min-height:0px;
+            
+            padding-top:0%;
+            padding-bottom:0%;
+            padding-right:0%;    
+}
+
+div#content form.invisibleFormAdd{
+    
+            border-style: none;
+            border-width: 0px;
+            background-color: #eeeeee;
+            min-height:0px;
+            
+            padding-top:0%;
+            padding-bottom:0%;
+            padding-right:0%;    
+}
+
 @media only screen and (min-width: 480px){
     div#content form, div#content .confermForm{
             border-style: solid;
@@ -371,6 +397,16 @@ form textarea {
             float:right;
             text-align: left;
 }
+
+form textarea.modificaOggetto {  
+            position: relative;
+            border-color: #ff5533;
+            border-style: solid;
+            border-width: 1px;
+            float:right;
+            text-align: left;
+}
+
 form input {
             border-color: #ff5533;
             border-style: solid;
@@ -421,6 +457,15 @@ form input {
                 text-align:right;
                 width:75%;
                 margin-bottom:50px;}
+    form div.labelCategoria1{
+                float:left; 
+                text-align:right; 
+                width:75%;}
+    form div.labelCategoria2{
+                visibility: hidden;
+                float:left; 
+                text-align:right; 
+                width:75%;}
     
     /* Stile degli INPUT in VENDITORE */
     form div.inputNome{
@@ -436,6 +481,9 @@ form input {
                 float:right; 
                 width:25%;}
     form div.inputDescrizione{}
+    form div.inputCategoria{
+                float:right; 
+                width:25%;}
     
     .clearer{
                 clear:both;
@@ -445,7 +493,10 @@ form input {
                 /*text-align: left;
                 padding-left:70%;*/}
 }
-            
+@media only screen and (max-width: 480px){   
+    form div.labelCategoria2{
+            display:none;}
+}
 
             
 
@@ -468,12 +519,29 @@ div.buttonLogin,div.buttonVendita{
             
             border:none;
 }
-.button:hover{
+.button:hover, .buttonAdd:hover{
             background-color: #ff5533;
 }
-.button:active{
+.button:active, .buttonAdd:active{
             background-color: #ff4433;
  
+}
+.buttonModSeller{
+            margin-left: 20px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            padding-right:20px;
+}
+
+.buttonAdd{
+            width:100%;
+            margin-top:20px;
+            font-weight: bold;
+            background-color: #ff9933;
+            padding:10px;
+            
+            border:none;
 }
 
 /* Stile delle tabelle */
@@ -519,6 +587,13 @@ div#content table td{
 /* Stile dei messaggi d'errore e di conferma (Milestone3)*/
 .errors {
     color: red;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50%;
+    font-weight: bold;
+}
+.askConferm {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -596,3 +671,5 @@ div#content table td{
 p.center{
     text-align: center;
 }
+
+

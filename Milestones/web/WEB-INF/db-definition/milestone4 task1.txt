@@ -1,0 +1,44 @@
+MILESTONE 4
+Schema delle tabelle del database:
+
+Tabelle:	AccountBalance
+		Customer
+		Seller
+		ObjectSale
+
+Relazioni:
+	AccountBalance  ->  Customer (uno a uno)
+	AccountBalance  ->  Seller (uno a uno)
+	ObjectSale 	->  Seller (uno a Molti)	
+	
+---------------------------------------------------------
+Attributi delle tabelle:
+AccountBalance:
+	*id
+	balance (DOUBLE)
+
+Customer:
+	*id
+	name
+	surname
+	username
+	password
+	idAccountBalance
+
+Seller:
+	*id
+	name
+	surname
+	username
+	password
+	idAccountBalance
+
+ObjectSale:
+	*id
+	name
+	imageURL
+	description
+	price (DOUBLE)
+	availability
+	category
+        idSeller

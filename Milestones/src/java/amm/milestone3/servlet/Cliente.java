@@ -2,11 +2,12 @@ package amm.milestone3.servlet;
 
 import amm.milestone3.classi.ObjectSale;
 import amm.milestone3.classi.ObjectFactory;
+import amm.milestone3.classi.UserFactory;
 import amm.milestone3.classi.User;
 import amm.milestone3.classi.SellerUser;
 import amm.milestone3.classi.CustomerUser;
 
-
+import java.sql.SQLException;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -46,7 +47,9 @@ public class Cliente extends HttpServlet {
         {
             request.setAttribute("objectLighter", ObjectFactory.getInstance().getObjectListByCategory("lighters")); 
             request.setAttribute("objectAccessories", ObjectFactory.getInstance().getObjectListByCategory("accessories")); 
-            session.getAttribute("Customer");
+            
+            //Mantengo aggiornati i dati del cliente prelevandoli dal database
+            session.setAttribute("Customer", UserFactory.getInstance().getCustomerByID((Integer) session.getAttribute("id")));
             
             
             if(request.getParameter("idObjbyLink")!=null){
@@ -57,6 +60,17 @@ public class Cliente extends HttpServlet {
             if(request.getParameter("BuyConferm") != null)
             {
                 request.setAttribute("BuyConfirmFlag", true);
+                Integer objectID = Integer.parseInt(request.getParameter("objId"));
+                Integer customerID = (Integer) (session.getAttribute("id"));
+
+                try{
+                    ObjectFactory.getInstance().buyObject(objectID,customerID);
+                    
+                }catch(SQLException e)
+                {
+                    
+                }
+ 
                 request.setAttribute("BuyConfermSuccess", "Congratulazioni! Hai completato il tuo acquisto");
                 request.setAttribute("BuyConfermFail", "Ci dispiace, ma non hai abbastanza soldi per confermare il tuo acquisto");
             }

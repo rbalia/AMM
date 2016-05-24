@@ -7,6 +7,8 @@ import amm.milestone3.classi.ObjectFactory;
 import amm.milestone3.classi.ObjectSale;
 import amm.milestone3.classi.UserFactory;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -16,12 +18,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  *
  * @author Riccardo Balia 65106
  */
-@WebServlet(name = "Login", urlPatterns = {"/login.html"})
+@WebServlet(name = "Login", urlPatterns = {"/login.html"}, loadOnStartup = 0)
 public class Login extends HttpServlet {
+    
+    private static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static final String DB_CLEAN_PATH = "../../web/WEB-INF/db/ammdb";
+    private static final String DB_BUILD_PATH = "WEB-INF/db/ammdb";
+    
+    @Override 
+    public void init(){
+        String dbConnection = "jdbc:derby:" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
+        //String dbConnection = "jdbc:derby://localhost:1527/ammdb";
+
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ObjectFactory.getInstance().setConnectionString(dbConnection);
+        UserFactory.getInstance().setConnectionString(dbConnection);
+    }
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,21 +72,23 @@ public class Login extends HttpServlet {
                 String password = request.getParameter("Password");
 
 
-                ArrayList<User> userList = UserFactory.getInstance().getUserList();
-
-
-                for(User u : userList)
-                {
+                //ArrayList<User> userList = UserFactory.getInstance().getUserList();
+                User u  = UserFactory.getInstance().getUser(username,password);
+                
                     //LOGIN CORRETTO
-                    if(u.getUsername().equals(username) && u.getPassword().equals(password ))
+                    if(u!=null)
                     {
                         //Utente autenticato
                         session.setAttribute("loggedIn", true);
-                        
-                        //session.setAttribute("id", u.getId());
+                        session.setAttribute("id", u.getId());
 
                         if(u instanceof SellerUser) 
                         {
+                            //Passo i dati alla pagina di welcome per il venditore
+                            Integer sellerId = (Integer) (session.getAttribute("id"));
+                            request.setAttribute("objectLighter", ObjectFactory.getInstance().getObjectListByCategoryAndSellerID("lighters", sellerId)); 
+                            request.setAttribute("objectAccessories", ObjectFactory.getInstance().getObjectListByCategoryAndSellerID("accessories", sellerId));
+                                
                             session.setAttribute("Seller", u);
                             session.setAttribute("loggedAsSeller", true);
                             request.getRequestDispatcher("venditore.jsp").forward(request, response);
@@ -79,16 +103,15 @@ public class Login extends HttpServlet {
                                 session.setAttribute("Customer", u);
                                 session.setAttribute("loggedAsCustomer", true);
                                 request.getRequestDispatcher("cliente.jsp").forward(request, response);  
-                            }                    
+                            }                 
                     }
                     //UTENTE NON TROVATO
-                    if(!u.getUsername().equals(username) && !u.getPassword().equals(password)) 
+                    if(u==null) 
                         request.setAttribute("messaggio", "Credenziali non valide");
 
                     //NESSUN INPUT
                      if("".equals(username) && "".equals(password)) 
                         request.setAttribute("messaggio", "Inserire delle credenziali");
-                }
             }
         }
         //Se sono loggato:
@@ -106,6 +129,8 @@ public class Login extends HttpServlet {
         request.getRequestDispatcher("login.jsp").forward(request, response);
         
     }
+    
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

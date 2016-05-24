@@ -29,7 +29,10 @@
                 <td>${Goods.description}</td>
             </tr>
         </table>
-        <div class="buttonLogin">        
+        <div class="buttonLogin">    
+            <input type="hidden" name="objId" value="${Goods.ID}" />
+            <input type="hidden" name="objPrice" value="${Goods.price}" />
+            <input type="hidden" name="objAvailability" value="${Goods.availability}" />
             <input type="submit" name="BuyConferm" value="Conferma" class="button" />
         </div>
     </form>

@@ -67,6 +67,9 @@
                 <div class="correct">
                 ${BuyConfermSuccess}<br/>
                 Prodotto acquistato: ${Goods.name}
+                
+                <p><a href="cliente.html">Torna all'area clienti</a></p>
+                    
                 </div>
                 </div>
                 </div>
@@ -79,6 +82,8 @@
                 <div class="confermForm">
                 <div class="errors">
                 ${BuyConfermFail}
+                
+                <p><a href="cliente.html">Torna all'area clienti</a></p>
                 </div>
                 </div>
                 </div>

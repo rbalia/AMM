@@ -32,6 +32,19 @@ public class ObjectSale {
     
     /* Metodi */
     /**
+     * @return the ID
+     */
+    public Integer getId() {
+        return ID;
+    }
+
+    /**
+     * @param ID the name to set
+     */
+    public void setId(Integer ID) {
+        this.ID = ID;
+    }
+    /**
      * @return the name
      */
     public String getName() {

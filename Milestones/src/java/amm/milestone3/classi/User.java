@@ -7,12 +7,12 @@ package amm.milestone3.classi;
 public abstract class User {
     
     /* Attributi */
-    private String name;
-    private String surname;
-    private String username;
-    private String password;
+    public String name;
+    public String surname;
+    public String username;
+    public String password;
     public Integer id;
-    private AccountBalance accountBalance;
+    public AccountBalance accountBalance;
     
     
     /* Costruttore */

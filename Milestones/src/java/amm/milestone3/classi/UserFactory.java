@@ -1,5 +1,11 @@
 package amm.milestone3.classi;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +15,7 @@ import java.util.ArrayList;
 public class UserFactory {
     
     private static UserFactory singleton;
-    //public  User[] users;
+    public String connectionString;
 
     public static UserFactory getInstance() {
         if (singleton == null) {
@@ -18,9 +24,6 @@ public class UserFactory {
         return singleton;
     }
 
-    public static Object getIstance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     /* Costruttore */
     public UserFactory()
@@ -28,101 +31,217 @@ public class UserFactory {
     
     }
     ArrayList<User> userList = new ArrayList<>();
-
-    //Restituisco tutti gli utenti
-    public ArrayList<User> getUserList() {
-
-        //ArrayList<User> userList = new ArrayList<>();
-        //Utente 1 - Venditore
-        User user1 = new SellerUser();
-        user1.setName("Marco");
-        user1.setSurname("Porcu");
-        user1.setUsername("markp");
-        user1.setPassword("pass0");
-        user1.setId(0);
-        user1.setAccountBalance(54.8);
-        userList.add(user1);
-        
-        //Utente 2 - Venditore
-        User user2 = new SellerUser();
-        user2.setName("Federico");
-        user2.setSurname("Caddeo");
-        user2.setUsername("Caddish");
-        user2.setPassword("pass1");
-        user2.setId(1);
-        user2.setAccountBalance(34.9);
-        userList.add(user2);
-        
-        //Utente 3 - Venditore
-        User user3 = new SellerUser();
-        user3.setName("Giacomo");
-        user3.setSurname("Balia");
-        user3.setUsername("Jack");
-        user3.setPassword("pass2");
-        user3.setId(2);
-        user3.setAccountBalance(76.1);
-        userList.add(user3);
-        
-        //Utente 4 - Cliente
-        User user4 = new CustomerUser();
-        user4.setName("Riccardo");
-        user4.setSurname("Benzoni");
-        user4.setUsername("Horrorscopo");
-        user4.setPassword("pass3");
-        user4.setId(3);
-        user4.setAccountBalance(106.6);
-        userList.add(user4);
-        
-        //Utente 5 - Cliente
-        User user5 = new CustomerUser();
-        user5.setName("Fabrizio");
-        user5.setSurname("Salis");
-        user5.setUsername("Bixio71");
-        user5.setPassword("pass4");
-        user5.setId(4);
-        user5.setAccountBalance(13.5);
-        userList.add(user5);
-        
-        //Utente 6 - Cliente
-        User user6 = new CustomerUser();
-        user6.setName("Mauro");
-        user6.setSurname("Zedda");
-        user6.setUsername("MauZ");
-        user6.setPassword("pass5");
-        user6.setId(5);
-        user6.setAccountBalance(78.0);
-        userList.add(user6);
-        
-        if (userList!=null)
-        {
-            return userList;
-        }
-        else
-            return null;
-        
-        /*PROVA SEMPLICE
-        User user = new SellerUser();
-        user.setName("Marco");
-        user.setSurname("Porcu");
-        user.setUsername("markp");
-        user.setPassword("pass0");
-        user.setID(1);
-        user.setAccountBalance(5.6);
-        
-        ArrayList<User> userList = new ArrayList<>();
-        
-        userList.add(user);
-        
-        return userList;*/
-    }
-    public User getSeller(int id)
+    
+    /* Metodi */
+    //Restituisco venditore
+    public SellerUser getSeller(String username, String password)
     {
-        for(User u : userList)
+        String query;
+        try 
+        {   
+           
+            String databaseUsername = "riccardobalia";
+            String databasePassword = "0000";
+            //Passo path, e le credenziali per l'accesso al database
+            Connection conn = DriverManager.getConnection(connectionString,databaseUsername,databasePassword);
+            
+            //RICERCA TRA I VENDITORI 
+            //Query per la ricerca tra Venditori
+            query = "SELECT  Seller.id,Seller.name,Seller.surname,Seller.username,Seller.password,AccountBalance.balance " 
+                   + "FROM Seller " 
+                   +"JOIN AccountBalance ON Seller.IDACCOUNTBALANCE = AccountBalance.ID " 
+                   + "WHERE Seller.username = ? AND Seller.password = ?";
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            // dati
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            //Avvio la query
+            ResultSet sellerResult = stmt.executeQuery();
+            
+            if(sellerResult.next())
+            {
+                SellerUser seller = new SellerUser();
+                seller.setId(sellerResult.getInt("id"));
+                seller.setName(sellerResult.getString("name"));
+                seller.setSurname(sellerResult.getString("surname"));
+                seller.setUsername(sellerResult.getString("username"));
+                seller.setPassword (sellerResult.getString("password"));
+                seller.setAccountBalance (sellerResult.getDouble("balance"));
+    
+                stmt.close();
+                conn.close();
+                
+                return seller;
+            }   
+        }
+        catch(SQLException e)
         {
-            if(u.id == id)
-                return u;
+           return null; 
+        }
+       return null;
+    }
+    
+    public CustomerUser getCustomer(String username,String password){
+            
+        String query;
+        try 
+            {  
+                    
+            String databaseUsername = "riccardobalia";
+            String databasePassword = "0000";
+            //Passo path, e le credenziali per l'accesso al database
+            Connection conn = DriverManager.getConnection(connectionString,databaseUsername,databasePassword);
+                
+            //RICERCA TRA I CLIENTI
+            query = "SELECT  Customer.id,Customer.name,Customer.surname,Customer.username,Customer.password,AccountBalance.balance " 
+                   + "FROM Customer " 
+                   + "JOIN AccountBalance ON Customer.IDACCOUNTBALANCE = AccountBalance.ID " 
+                   + "WHERE Customer.username = ? AND Customer.password = ?";
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            // dati
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            //Avvio la query
+            ResultSet customerResult = stmt.executeQuery();
+
+            if(customerResult.next())
+            {
+                CustomerUser customer = new CustomerUser();
+                customer.setId(customerResult.getInt("id"));
+                customer.setName(customerResult.getString("name"));
+                customer.setSurname(customerResult.getString("surname"));
+                customer.setUsername(customerResult.getString("username"));
+                customer.setPassword (customerResult.getString("password"));
+                customer.setAccountBalance (customerResult.getDouble("balance"));
+
+                stmt.close();
+                conn.close();
+
+                return customer;
+            }
+        }
+        catch(SQLException e)
+        {
+           return null; 
+        }
+       return null;
+    }
+    
+    //Cerco il cliente in base all'ID
+    public CustomerUser getCustomerByID(Integer customerID){
+            
+        String query;
+        try 
+            {  
+                    
+            String databaseUsername = "riccardobalia";
+            String databasePassword = "0000";
+            //Passo path, e le credenziali per l'accesso al database
+            Connection conn = DriverManager.getConnection(connectionString,databaseUsername,databasePassword);
+                
+            //RICERCA TRA I CLIENTI IN BASE ALL'ID
+            query = "SELECT  Customer.id,Customer.name,Customer.surname,Customer.username,Customer.password,AccountBalance.balance " 
+                   + "FROM Customer " 
+                   + "JOIN AccountBalance ON Customer.IDACCOUNTBALANCE = AccountBalance.ID " 
+                   + "WHERE Customer.id = ?";
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            //dati
+            stmt.setInt(1, customerID);
+            //Avvio la query
+            ResultSet customerResult = stmt.executeQuery();
+
+            if(customerResult.next())
+            {
+                CustomerUser customer = new CustomerUser();
+                customer.setId(customerResult.getInt("id"));
+                customer.setName(customerResult.getString("name"));
+                customer.setSurname(customerResult.getString("surname"));
+                customer.setUsername(customerResult.getString("username"));
+                customer.setPassword (customerResult.getString("password"));
+                customer.setAccountBalance (customerResult.getDouble("balance"));
+
+                stmt.close();
+                conn.close();
+
+                return customer;
+            }
+        }
+        catch(SQLException e)
+        {
+           return null; 
+        }
+       return null;
+    }
+    
+    //Cerco il venditore in base all'ID
+    public SellerUser getSellerByID(Integer sellerID){
+            
+        String query;
+        try 
+            {  
+                    
+            String databaseUsername = "riccardobalia";
+            String databasePassword = "0000";
+            //Passo path, e le credenziali per l'accesso al database
+            Connection conn = DriverManager.getConnection(connectionString,databaseUsername,databasePassword);
+                
+            //RICERCA TRA I CLIENTI
+            query = "SELECT  Seller.id,Seller.name,Seller.surname,Seller.username,Seller.password,AccountBalance.balance " 
+                   + "FROM Seller " 
+                   + "JOIN AccountBalance ON Seller.IDACCOUNTBALANCE = AccountBalance.ID " 
+                   + "WHERE Seller.id = ?";
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            // dati
+            stmt.setInt(1, sellerID);
+            //Avvio la query
+            ResultSet sellerResult = stmt.executeQuery();
+
+            if(sellerResult.next())
+            {
+                SellerUser seller = new SellerUser();
+                seller.setId(sellerResult.getInt("id"));
+                seller.setName(sellerResult.getString("name"));
+                seller.setSurname(sellerResult.getString("surname"));
+                seller.setUsername(sellerResult.getString("username"));
+                seller.setPassword (sellerResult.getString("password"));
+                seller.setAccountBalance (sellerResult.getDouble("balance"));
+
+                stmt.close();
+                conn.close();
+
+                return seller;
+            }
+        }
+        catch(SQLException e)
+        {
+           return null; 
+        }
+       return null;
+    }
+    
+    //Restituisco l'utente loggato
+    public User getUser(String username, String password) 
+    {
+        
+        User loggedUser = getSeller(username,password);
+        
+        if(loggedUser == null){
+            loggedUser = getCustomer(username,password);
         }
         
-        return null;
+        return loggedUser;
+    }
+    
+    // ConnectionString
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+    public String getConnectionString(){
+	return this.connectionString;
     }
 }
+
