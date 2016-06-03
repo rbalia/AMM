@@ -24,7 +24,7 @@
     <div id="content" class="formThreeCol">
         <h2>Conferma cancellazione</h2>
         <form action="venditore.html" method="post">
-
+            
             <table class="confermTable">
                 <tr>
                     <td><img src="${DelObj.imageURL}" alt="Errore durante il caricamento" height="157" width="110"/></td>
@@ -43,6 +43,7 @@
                     <td>${DelObj.description}</td>
                 </tr>
             </table>
+            
             <div class="askConferm">        
                 Sei sicuro di voler eliminare il prodotto dal negozio?<br/> 
                 <input type="hidden" name="objId" value="${DelObj.ID}" />

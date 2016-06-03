@@ -31,13 +31,13 @@ public class Filter extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-    //    HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(false);
         
-    //    if(session==null || session.getAttribute("loggedIn") == null || session.getAttribute("loggedIn").equals(false) || session.getAttribute("loggedAsCustomer") == null ||  !session.getAttribute("loggedAsCustomer").equals(true) )
-    //    {
+        if(session!=null && session.getAttribute("loggedIn") != null && session.getAttribute("loggedIn").equals(true) && session.getAttribute("loggedAsCustomer") != null &&  session.getAttribute("loggedAsCustomer").equals(true) )
+        {
             String command = request.getParameter("command");
             
-            if(command != null/* && command.equals("filtrate")*/) 
+            if(command != null) 
             {
                 //Acquisisco il testo del filtro
                 String pattern = request.getParameter("filter");
@@ -53,7 +53,7 @@ public class Filter extends HttpServlet {
                 // Genero il json con una jsp
                 request.getRequestDispatcher("FiltratoJson.jsp").forward(request, response);
             }    
-    //    }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -15,6 +15,7 @@
                 <div class="correct">
                     ${messaggioConferma}
                 </div>
+                <div class="confermTable">
                 <table class="confermTable">
                 <tr>
                     <td><img src="${imageURL}" alt="Errore durante il caricamento" height="157" width="110"/></td>
@@ -37,6 +38,7 @@
                     <td>${description}</td>
                 </tr>
                 </table>
+                </div>
                     <div class="correct">
                     <p><a href="venditore.html">Torna all'area venditori</a></p>
                     </div>

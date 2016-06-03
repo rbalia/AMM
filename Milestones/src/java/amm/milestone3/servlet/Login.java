@@ -32,7 +32,7 @@ public class Login extends HttpServlet {
     
     @Override 
     public void init(){
-        String dbConnection = "jdbc:derby:" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
+        String dbConnection = "jdbc:derby:" + this.getServletContext().getRealPath("/") + DB_CLEAN_PATH;
         //String dbConnection = "jdbc:derby://localhost:1527/ammdb";
 
         try {
