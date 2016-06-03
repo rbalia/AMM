@@ -120,30 +120,53 @@ public class Venditore extends HttpServlet {
                     String categoria = request.getParameter("Categoria");
                     String descrizione = request.getParameter("Descrizione");
 
-                    //INSERIMENTO CORRETTO
-                    if(!"".equals(name) && !"".equals(urlImage) && !"".equals(prezzo) && !"".equals(quantita) && !"".equals(descrizione) && categoria!=null)
-                    {
-
-                        request.setAttribute("confirmedFlag", true);
-                        request.setAttribute("messaggioConferma", "Nuova inserzione creata con successo");
-                        
-                        Integer sellerID = (Integer) (session.getAttribute("id"));
-                        ObjectFactory.getInstance().addObject(name,urlImage,prezzo,quantita,descrizione,categoria,sellerID);
-
-                        request.setAttribute("imageURL", urlImage);
-                        request.setAttribute("name", name);
-                        request.setAttribute("availability", quantita);
-                        request.setAttribute("price", prezzo);
-                        request.setAttribute("description", descrizione);
-                        request.setAttribute("category", categoria);
-                    }
+                    //Con i dati passati cerco oggetti con lo stesso nome
+                    ObjectSale AlreadyOnStore = ObjectFactory.getInstance().getObjectByName(name);
                     
-                    //INSERIMENTO ERRATO
-                    if("".equals(name) || "".equals(urlImage) || "".equals(prezzo) || "".equals(quantita) || "".equals(descrizione)  || categoria==null)
+                    /*  Non consento l'inserimento di due oggetti con lo stesso nome all'interno del negozio
+                        e evito che si creino duplicati ricaricando la pagina di creazione oggetto*/
+                    if(AlreadyOnStore==null)
+                    {
+                        //INSERIMENTO CORRETTO
+                        if(!"".equals(name) && !"".equals(urlImage) && !"".equals(prezzo) && !"".equals(quantita) && !"".equals(descrizione) && categoria!=null)
+                        {
+
+                            request.setAttribute("confirmedFlag", true);
+                            request.setAttribute("messaggioConferma", "Nuova inserzione creata con successo");
+
+                            Integer sellerID = (Integer) (session.getAttribute("id"));
+                            
+                            //Evito cloni dell'oggetto appena inserito
+                            if(AlreadyOnStore==null)
+                            {
+                                request.setAttribute("AlreadyAdded", "true");
+                                ObjectFactory.getInstance().addObject(name,urlImage,prezzo,quantita,descrizione,categoria,sellerID);
+                            }
+
+                            //Mostro l'oggetto creato
+                            request.setAttribute("imageURL", urlImage);
+                            request.setAttribute("name", name);
+                            request.setAttribute("availability", quantita);
+                            request.setAttribute("price", prezzo);
+                            request.setAttribute("description", descrizione);
+                            request.setAttribute("category", categoria);
+                        }
+
+                        //INSERIMENTO ERRATO
+                        if("".equals(name) || "".equals(urlImage) || "".equals(prezzo) || "".equals(quantita) || "".equals(descrizione)  || categoria==null)
+                        {
+                            request.setAttribute("AddButton", true);
+                            request.setAttribute("messaggioErrore", "Tutti i campi sono obbligatori");
+                        }
+                   
+                    } 
+                    //INSERIMENTO GIA REGISTRATO
+                    else
                     {
                         request.setAttribute("AddButton", true);
-                        request.setAttribute("messaggioErrore", "Tutti i campi sono obbligatori");
+                        request.setAttribute("messaggioErrore", "Oggetto già esistente");
                     }
+                    
                 }//Fine SubmitSeller!=null
             }
         }

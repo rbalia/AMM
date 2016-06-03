@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <c:when test="${(DeleteConfermButton eq true)}">
-    <div id="content" class="form">
+    <div id="content" class="formThreeCol">
         <h3>Conferma acquisto</h3>
         <div class="confermForm">
             <div class="correct">
@@ -21,25 +21,25 @@
     </div>
 </c:when>
 <c:when test="${(DeleteButton eq true)}">
-    <div id="content" class="form">
+    <div id="content" class="formThreeCol">
         <h2>Conferma cancellazione</h2>
         <form action="venditore.html" method="post">
 
             <table class="confermTable">
                 <tr>
                     <td><img src="${DelObj.imageURL}" alt="Errore durante il caricamento" height="157" width="110"/></td>
-                    <th class="nome">${DelObj.name}</th>
+                    <td class="nome">${DelObj.name}</td>
                 </tr>
                 <tr class="pari">
-                    <th>Quantità:</th> 
+                    <td class="headerRiga">Quantità:</td> 
                     <td>${DelObj.availability} disponibili</td>
                 </tr>
                 <tr class="dispari">
-                    <th>Prezzo:</th>
+                    <td class="headerRiga">Prezzo:</td>
                     <td>${DelObj.price} $</td>
                 </tr>
                 <tr class="pari">
-                    <th>Descrizione:</th>
+                    <td class="headerRiga">Descrizione:</td>
                     <td>${DelObj.description}</td>
                 </tr>
             </table>

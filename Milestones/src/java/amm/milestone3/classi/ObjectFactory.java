@@ -114,6 +114,54 @@ public class ObjectFactory{
 
     }
     
+    //Impedisco la creazione di oggetti con lo stesso nome
+    //Restitutisce i dati per il controllo della creazione di copie dell'oggetto nel ricaricamento della pagina
+    public ObjectSale getObjectByName(String targetName) 
+    {
+        String query;
+        try 
+            {          
+            String databaseUsername = "riccardobalia";
+            String databasePassword = "0000";
+            //Passo path, e le credenziali per l'accesso al database
+            Connection conn = DriverManager.getConnection(connectionString,databaseUsername,databasePassword);
+                
+            //RICERCA TRA I GLI OGGETTI IN BASE ALL' ID
+            query = "SELECT  * " 
+                   + "FROM ObjectSale " 
+                   + "WHERE ObjectSale.name = ?";
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            //Dati
+            stmt.setString(1, targetName);
+            //Avvio la query
+            ResultSet nameResult = stmt.executeQuery();
+
+            if(nameResult.next())
+            {   
+                ObjectSale objByName = new ObjectSale();
+                objByName.setId(nameResult.getInt("id"));
+                objByName.setName(nameResult.getString("name"));
+                objByName.setImageURL(nameResult.getString("imageUrl"));
+                objByName.setDescription(nameResult.getString("description"));
+                objByName.setPrice(nameResult.getDouble("price"));
+                objByName.setAvailability(nameResult.getInt("availability"));
+                objByName.setCategory(nameResult.getString("category"));
+
+                stmt.close();
+                conn.close();
+
+                return objByName;
+            }
+        }
+        catch(SQLException e)
+        {
+           return null; 
+        }
+       return null;
+    }
+    
+    
     //Restituisco l'oggetto che corrispondono a un id   
     public ObjectSale getObjectListByID(Integer targetID) 
     {
@@ -514,13 +562,12 @@ public class ObjectFactory{
 
             //Soldi per il Venditore
             //Double sellerMoney = (seller.getAccountBalance() + onCartObject.getPrice() );
-            Double sellerMoney = ((seller.getAccountBalance()*100) + (onCartObject.getPrice() * 100));
-           
+            Integer sellerMoneyInt = (int)((seller.getAccountBalance()*100) + (onCartObject.getPrice() * 100));
             //Soldi per il Cliente
-            Double customerMoney = ((customer.getAccountBalance()*100)-(onCartObject.getPrice()*100));
+            Integer customerMoneyInt = (int)((customer.getAccountBalance()*100)-(onCartObject.getPrice()*100));
             
-            sellerMoney=sellerMoney/100;
-            customerMoney=customerMoney/100;
+            Double sellerMoney = (double)sellerMoneyInt/100;
+            Double customerMoney = (double)customerMoneyInt/100;
             
             //dati per tabella Venditore
             stmtSeller.setDouble(1, sellerMoney);
@@ -561,6 +608,57 @@ public class ObjectFactory{
             conn.setAutoCommit(true);
             conn.close();
         }
+    }
+    //M5: Restituisco gli oggetti trovati dal filtro   
+    public ArrayList<ObjectSale> getObjectByFilter(String pattern) 
+    {
+        ArrayList<ObjectSale> matchedObjects = new ArrayList<>();
+
+        pattern = "%" + pattern + "%";
+        String query;
+        try 
+            {          
+            String databaseUsername = "riccardobalia";
+            String databasePassword = "0000";
+            //Passo path, e le credenziali per l'accesso al database
+            Connection conn = DriverManager.getConnection(connectionString,databaseUsername,databasePassword);
+                
+            //RICERCA GLI OGGETTI CHE HANNOCERTE PAROLE COME NOME O NELLA DESCRIZIONE
+            query = "SELECT  * " 
+                   + "FROM ObjectSale " 
+                   + "WHERE ObjectSale.name LIKE ? OR ObjectSale.description LIKE ? ";
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            //Dati
+            stmt.setString(1, pattern);
+            stmt.setString(2, pattern);
+            
+            //Avvio la query
+            ResultSet result = stmt.executeQuery();
+
+            while(result.next())
+            {   
+                ObjectSale objByIDSeller = new ObjectSale();
+                objByIDSeller.setId(result.getInt("id"));
+                objByIDSeller.setName(result.getString("name"));
+                objByIDSeller.setImageURL(result.getString("imageUrl"));
+                objByIDSeller.setDescription(result.getString("description"));
+                objByIDSeller.setPrice(result.getDouble("price"));
+                objByIDSeller.setAvailability(result.getInt("availability"));
+                objByIDSeller.setCategory(result.getString("category"));
+
+                matchedObjects.add(objByIDSeller);  
+            }
+            stmt.close();
+            conn.close();
+
+            return matchedObjects;
+        }
+        catch(SQLException e)
+        {
+           return null; 
+        }
+
     }
   
     

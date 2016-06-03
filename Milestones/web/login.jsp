@@ -38,7 +38,7 @@
         </ul>
         </nav>
         
-        <div id="content" class="form">
+        <div id="content" class="formLogin">
         <h3>Accedi</h3>
         <form action="login.html" method="post">
             

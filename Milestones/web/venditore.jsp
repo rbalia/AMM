@@ -1,7 +1,7 @@
 <%-- 
     Document   : venditore
     Created on : 20-mag-2016, 15.12.29
-    Author     : ricca
+    Author     : Riccardo Balia 65106
 --%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -38,11 +38,13 @@
         </nav>
                 <div id="sidebarRight">   
         <c:if test="${(loggedIn eq true) && (loggedAsSeller eq true)}">
-            <h3>Bentornato</h3> 
-            ${Seller.name} ${Seller.surname}<br/>
-            <p>ID: ${Seller.id}</p>
-            <h4>Saldo:</h4>
-            ${Seller.accountBalance} $
+            <div class="accountVenditore">
+                <h3 class="accountLine">Bentornato</h3> 
+                <p class="accountLine">${Seller.name} ${Seller.surname}</p>
+                <p class="accountLine">ID: ${Seller.id}</p>
+                <h4 class="accountLine">Saldo:</h4>
+                ${Seller.accountBalance} $
+            </div>
         </c:if>
         </div>
         
@@ -64,7 +66,7 @@
 
                 <%-- Pagina principale venditore.html senza ancora nulla selezionato --%>
                 <c:otherwise>
-                <div id="content">
+                <div id="content" class="SellerMain">
                     <form action="venditore.html" method="post" class="invisibleFormAdd">
                 <input type="submit" name="SubmitAdd" value="Aggiungi una nuova inserzione" class="buttonAdd" />
                         </form>
@@ -74,14 +76,14 @@
                     <table>
                         <tr>
                             <td><img src="${objectLighter.imageURL}" alt="Errore durante il caricamento" height="157" width="110"/></td>
-                            <th class="nome">${objectLighter.name}</th>
+                            <td class="nome">${objectLighter.name}</td>
                         </tr>
                         <tr class="pari">
-                            <th>Quantità:</th> 
+                            <td class="headerRiga">Quantità:</td> 
                             <td>${objectLighter.availability} disponibili</td>
                         </tr>
                         <tr class="dispari">
-                            <th>Prezzo:</th>
+                            <td class="headerRiga">Prezzo:</td>
                             <td>${objectLighter.price} $</td>
                         </tr>
                         <tr>
@@ -103,7 +105,7 @@
 
                 </c:forEach>
                 <c:if test="${(empty objectLighter)}">
-                    <p>Nessun oggetto in vendita</p>
+                    <p class="nessunaCorrispondenza">Nessun oggetto in vendita</p>
                 </c:if>
 
             <!-- Fine Generazione Dinamica -->
@@ -114,14 +116,14 @@
                     <table>
                         <tr>
                             <td><img src=${objectAccessories.imageURL} alt="Errore durante il caricamento" height="157" width="110"/></td>
-                            <th class="nome">${objectAccessories.name}</th>
+                            <td class="nome">${objectAccessories.name}</td>
                         </tr>
                         <tr class="pari">
-                            <th>Quantità:</th> 
+                            <td class="headerRiga">Quantità:</td> 
                             <td>${objectAccessories.availability} disponibili</td>
                         </tr>
                         <tr class="dispari">
-                            <th>Prezzo:</th>
+                            <td class="headerRiga">Prezzo:</td>
                             <td>${objectAccessories.price} $</td>
                         </tr>
                         <tr>
@@ -143,7 +145,7 @@
 
                 </c:forEach>
                 <c:if test="${(empty objectAccessories)}">
-                    <p>Nessun oggetto in vendita</p>
+                    <p class="nessunaCorrispondenza">Nessun oggetto in vendita</p>
                 </c:if>
                 <!-- Fine Generazione Dinamica -->
             </div>

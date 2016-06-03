@@ -14,6 +14,9 @@
         <meta name="author" content="Riccardo Balia">
         <meta name="keywords" content="Lighters,Accendini,LightersMania,Catalogo">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+        
+        <script type="text/javascript" src="./js/jquery-2.2.4.min.js"></script>
+        <script type="text/javascript" src="./js/filtro.js"></script>  
     </head>
     <body>
     <div id="page">
@@ -29,7 +32,6 @@
         </header>
 
         <nav id="sidebarLeft" class="sidebar">
-
         <h3>Navigazione</h3>
         <ul>
             
@@ -38,16 +40,30 @@
         </ul>
         </nav>
         
-        <div id="sidebarRight"> 
+        
         <%-- Se l'utente è loggato mostra dati utente --%>
         <c:if test="${(loggedIn eq true) && (loggedAsCustomer eq true)}">
-            <h3>Bentornato!</h3> 
-            ${Customer.name} ${Customer.surname}<br/>
-            <p>ID: ${Customer.id}</p>
-            <h4>Saldo:</h4>
-            ${Customer.accountBalance} $
+        <nav id="sidebarRight"> 
+            <%-- Se l'utente non è nella pagina principale del cliente non mostrare l'opzione di filtraggio --%>
+            <c:if test="${(idObject==null)}">
+                <div class="filter">
+                    <form method="post" class="invisibleForm">
+                        <label for="filter" class="labelFilter">Filtra</label>
+                        <input type="text" id="filter" class="inputFilter" name="filter" size="20"/>
+                        <%--<input type="submit"  id="submitFilter" name="filterButton" value="Cerca" class="button"/>--%>
+                    </form>
+                </div>
+            </c:if>
+            <div class="accountCliente">
+                <h3 class="accountLine">Bentornato</h3> 
+                <p class="accountLine">${Customer.name} ${Customer.surname}</p>
+                <p class="accountLine">ID: ${Customer.id}</p>
+                <h4 class="accountLine">Saldo:</h4>
+                ${Customer.accountBalance} $
+            </div>
+        </nav>
         </c:if>
-        </div>
+        
         
         
         <c:choose>
@@ -91,6 +107,9 @@
             
             <%-- Pagina principale cliente.html senza ancora nulla selezionato --%>
             <c:when test="${idObject==null}">
+              <p id="matchedObject"></p>
+              <p>${MessaggioErroreFilter}</p>
+
               <%@ include file="catalogo_cliente.jsp" %> <%-- INCLUDE CATOLOGO --%> 
             </c:when>
             </c:choose>
